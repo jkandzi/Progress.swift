@@ -23,7 +23,7 @@ $ 4 of 9 [-------------                 ] ETA: 0:00:05 (at 1.01 it/s)
 ```
 
 #Installation
-##Swift Package Manager
+###Swift Package Manager
 
 To install with the Swift Package Manager, add the following in your `Package.swift`:
 
@@ -38,7 +38,7 @@ let package = Package(
 )
 ```
 
-##Manual
+###Manual
 
 You can also copy the `Progress.swift` file into your Xcode project.
 
