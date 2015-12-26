@@ -28,4 +28,4 @@ You are welcome to fork and submit pull requests.
 
 #License
 
-Progress.swift is released under the MIT license. See LICENSE for details.
+Progress.swift is released under the MIT license. See [https://github.com/jkandzi/Progress.swift/blob/master/LICENSE.txt](LICENSE) for details.
