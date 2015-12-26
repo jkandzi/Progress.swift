@@ -2,6 +2,8 @@
 
 Just wrap the `SequenceType` in your loop with the `Progress SequenceType` and you'll automatically get beautiful progress bars.
 
+# Example
+
 ```swift
 for i in 1...9 {
 	...
