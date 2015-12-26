@@ -22,6 +22,26 @@ for i in Progress(1...9) {
 $ 4 of 9 [-------------                 ] ETA: 0:00:05 (at 1.01 it/s)
 ```
 
+#Installation
+##Swift Package Manager
+
+To install with the Swift Package Manager, add the following in your `Package.swift`:
+
+```swift
+import PackageDescription
+
+let package = Package(
+    name: "My Project",
+    dependencies: [
+        .Package(url: "https://github.com/jkandzi/Progress.swift", majorVersion: 0)]),
+    ]
+)
+```
+
+##Manual
+
+You can also copy the `Progress.swift` file into your Xcode project.
+
 #Contribution
 
 You are welcome to fork and submit pull requests.
