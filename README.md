@@ -1,4 +1,4 @@
-# Progress.swift
+# Progress.swift :hourglass:
 
 Just wrap the `SequenceType` in your loop with the `Progress SequenceType` and you'll automatically get beautiful progress bars.
 
@@ -48,4 +48,4 @@ You are welcome to fork and submit pull requests.
 
 #License
 
-Progress.swift is released under the MIT license. See [https://github.com/jkandzi/Progress.swift/blob/master/LICENSE.txt](LICENSE) for details.
+Progress.swift is released under the MIT license. See [LICENSE](https://github.com/jkandzi/Progress.swift/blob/master/LICENSE.txt) for details.
