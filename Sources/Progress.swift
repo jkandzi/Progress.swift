@@ -1,18 +1,10 @@
 import Foundation
 
-
-final class ProgressGenerator<G: GeneratorType>: GeneratorType {
+public final class ProgressGenerator<G: GeneratorType>: GeneratorType {
     var source: G
     var index = 0
     let startTime = CFAbsoluteTimeGetCurrent()
     let barLength = 30
-    let formatter: NSDateComponentsFormatter = {
-        let formatter = NSDateComponentsFormatter()
-        formatter.unitsStyle = .Positional
-        formatter.zeroFormattingBehavior = .Pad
-        formatter.allowedUnits = [.Hour, .Minute, .Second]
-        return formatter
-    }()
     
     let count: Int
     init(source: G, count: Int) {
@@ -22,7 +14,7 @@ final class ProgressGenerator<G: GeneratorType>: GeneratorType {
         print("\u{1B}7")
     }
     
-    func next() -> G.Element? {
+    public func next() -> G.Element? {
         let totalTime = CFAbsoluteTimeGetCurrent() - startTime
         
         var its = 0.0
@@ -49,22 +41,22 @@ final class ProgressGenerator<G: GeneratorType>: GeneratorType {
     }
     
     func format(duration: NSTimeInterval) -> String {
-        if let durationString = formatter.stringFromTimeInterval(duration) {
-            return durationString
-        }
-        return ""
+        let duration = Int(duration)
+        let seconds = duration % 60
+        let minutes = (duration / 60) % 60
+        let hours = (duration / 3600)
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
 }
 
-
-struct Progress<G: SequenceType>: SequenceType {
+public struct Progress<G: SequenceType>: SequenceType {
     var generator: G
     
     init(_ generator: G) {
         self.generator = generator
     }
     
-    func generate() -> ProgressGenerator<G.Generator> {
+    public func generate() -> ProgressGenerator<G.Generator> {
         let count = generator.underestimateCount()
         return ProgressGenerator(source: generator.generate(), count: count)
     }   
