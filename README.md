@@ -21,3 +21,11 @@ for i in Progress(1...9) {
 ```
 $ 4 of 9 [-------------                 ] ETA: 0:00:05 (at 1.01 it/s)
 ```
+
+#Contribution
+
+You are welcome to fork and submit pull requests.
+
+#License
+
+Progress.swift is released under the MIT license. See LICENSE for details.
