@@ -1,12 +1,12 @@
 import Foundation
 
-public final class ProgressGenerator<G: GeneratorType>: GeneratorType {
+public struct ProgressGenerator<G: GeneratorType>: GeneratorType {
     var source: G
     var index = 0
     let startTime = CFAbsoluteTimeGetCurrent()
     let barLength = 30
-    
     let count: Int
+    
     init(source: G, count: Int) {
         self.source = source
         self.count = count
@@ -14,22 +14,24 @@ public final class ProgressGenerator<G: GeneratorType>: GeneratorType {
         print("\u{1B}7")
     }
     
-    public func next() -> G.Element? {
+    public mutating func next() -> G.Element? {
         let totalTime = CFAbsoluteTimeGetCurrent() - startTime
         
-        var its = 0.0
-        var eta = 0.0
+        var itemsPerSecond = 0.0
+        var estimatedTimeRemaining = 0.0
         if index > 0 {
-            its = totalTime / Double(index)
-            eta = its * Double(count - index)
+            itemsPerSecond = totalTime / Double(index)
+            estimatedTimeRemaining = itemsPerSecond * Double(count - index)
         }
         
         let completed = Int(Double(barLength) * (Double(index) / Double(count)))
         var barArray = [String](count: completed, repeatedValue: "-")
         barArray += [String](count: barLength - completed, repeatedValue: " ")
-        let barString = barArray.joinWithSeparator("")
         
-        let string = "\(index) of \(count) [\(barString)] ETA: \(format(eta)) (at \(format(its, ".2")) it/s)"
+        var string = "\(index) of \(count)"
+        string += "[" + barArray.joinWithSeparator("") + "]"
+        string += "ETA: \(format(estimatedTimeRemaining)) (at \(format(itemsPerSecond, ".2")) it/s)"
+        
         print("\u{1B}8\u{1B}[K\(string)")
         
         index += 1
@@ -50,7 +52,7 @@ public final class ProgressGenerator<G: GeneratorType>: GeneratorType {
 }
 
 public struct Progress<G: SequenceType>: SequenceType {
-    var generator: G
+    let generator: G
     
     init(_ generator: G) {
         self.generator = generator
