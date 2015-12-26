@@ -57,7 +57,7 @@ final class ProgressGenerator<G: GeneratorType>: GeneratorType {
 }
 
 
-struct Prog<G: SequenceType>: SequenceType {
+struct Progress<G: SequenceType>: SequenceType {
     var generator: G
     
     init(_ generator: G) {
