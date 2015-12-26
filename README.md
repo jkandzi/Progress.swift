@@ -1,4 +1,4 @@
-# Progress.swift
+# Progress.swift :hourglass:
 
 Just wrap the `SequenceType` in your loop with the `Progress SequenceType` and you'll automatically get beautiful progress bars.
 
