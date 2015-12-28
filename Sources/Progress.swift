@@ -54,7 +54,7 @@ public struct ProgressGenerator<G: GeneratorType>: GeneratorType {
 public struct Progress<G: SequenceType>: SequenceType {
     let generator: G
     
-    init(_ generator: G) {
+    public init(_ generator: G) {
         self.generator = generator
     }
     
