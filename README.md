@@ -22,6 +22,23 @@ for i in Progress(1...9) {
 $ 4 of 9 [-------------                 ] ETA: 0:00:05 (at 1.01 it/s)
 ```
 
+It also works with all the other types adopting the `CollectionType` protocol:
+
+```swift
+for i in Progress(["key": "value", "key2": "also value"]) {
+    ...
+}
+
+for i in Progress([1, 52, 6, 26, 1]) {
+    ...
+}
+```
+
+```
+$ 2 of 2 [------------------------------] ETA: 00:00:00 (at 1.00 it/s)
+$ 3 of 5 [------------------            ] ETA: 00:00:02 (at 1.00 it/s)
+```
+
 #Installation
 ###Swift Package Manager
 
@@ -31,7 +48,7 @@ To install with the Swift Package Manager, add the following in your `Package.sw
 import PackageDescription
 
 let package = Package(
-    name: "My Project",
+    name: "MyProject",
     dependencies: [
         .Package(url: "https://github.com/jkandzi/Progress.swift", majorVersion: 0)
     ]
