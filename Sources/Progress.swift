@@ -10,8 +10,6 @@ public struct ProgressGenerator<G: GeneratorType>: GeneratorType {
     init(source: G, count: Int) {
         self.source = source
         self.count = count
-        
-        print("\u{1B}7")
     }
     
     public mutating func next() -> G.Element? {
@@ -32,7 +30,11 @@ public struct ProgressGenerator<G: GeneratorType>: GeneratorType {
         string += "[" + barArray.joinWithSeparator("") + "]"
         string += "ETA: \(format(estimatedTimeRemaining)) (at \(format(itemsPerSecond, ".2")) it/s)"
         
-        print("\u{1B}8\u{1B}[K\(string)")
+        if index == 0 {
+            print("") // "\u{1B}[1A" moves the cursor up one line. have to add an empty line here.
+        }
+        
+        print("\u{1B}[1A\u{1B}[K\(string)")
         
         index += 1
         return source.next()
@@ -61,5 +63,4 @@ public struct Progress<G: SequenceType>: SequenceType {
     public func generate() -> ProgressGenerator<G.Generator> {
         let count = generator.underestimateCount()
         return ProgressGenerator(source: generator.generate(), count: count)
-    }   
 }
