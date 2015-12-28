@@ -13,6 +13,41 @@ public struct ProgressGenerator<G: GeneratorType>: GeneratorType {
     }
     
     public mutating func next() -> G.Element? {
+        let string = [indexInformation(), progressBar(), timeEstimates()].joinWithSeparator(" ")
+        
+        if index == 0 {
+            // "\u{1B}[1A" moves the cursor up one line. have to add an empty line here.
+            print("")
+        }
+        
+        print("\u{1B}[1A\u{1B}[K\(string)")
+        
+        index += 1
+        return source.next()
+    }
+    
+    /// creates the index element e.g. "2 of 3"
+    private func indexInformation() -> String {
+        return "\(index) of \(count)"
+    }
+    
+    /// creates the progress bar element e.g. "[----------------------        ]"
+    private func progressBar() -> String {
+        var completedBarElements = 0
+        if count == 0 {
+            completedBarElements = barLength
+        }
+        else {
+            completedBarElements = Int(Double(barLength) * (Double(index) / Double(count)))
+        }
+        
+        var barArray = [String](count: completedBarElements, repeatedValue: "-")
+        barArray += [String](count: barLength - completedBarElements, repeatedValue: " ")
+        return "[" + barArray.joinWithSeparator("") + "]"
+    }
+    
+    /// creates the time estimates e.g. "ETA: 00:00:02 (at 1.00 it/s)"
+    private func timeEstimates() -> String {
         let totalTime = CFAbsoluteTimeGetCurrent() - startTime
         
         var itemsPerSecond = 0.0
@@ -22,29 +57,14 @@ public struct ProgressGenerator<G: GeneratorType>: GeneratorType {
             estimatedTimeRemaining = itemsPerSecond * Double(count - index)
         }
         
-        let completed = Int(Double(barLength) * (Double(index) / Double(count)))
-        var barArray = [String](count: completed, repeatedValue: "-")
-        barArray += [String](count: barLength - completed, repeatedValue: " ")
-        
-        var string = "\(index) of \(count)"
-        string += "[" + barArray.joinWithSeparator("") + "]"
-        string += "ETA: \(format(estimatedTimeRemaining)) (at \(format(itemsPerSecond, ".2")) it/s)"
-        
-        if index == 0 {
-            print("") // "\u{1B}[1A" moves the cursor up one line. have to add an empty line here.
-        }
-        
-        print("\u{1B}[1A\u{1B}[K\(string)")
-        
-        index += 1
-        return source.next()
+        return "ETA: \(formatDuration(estimatedTimeRemaining)) (at \(formatDouble(itemsPerSecond, ".2")) it/s)"
     }
     
-    func format(value: Double, _ format: String) -> String {
+    private func formatDouble(value: Double, _ format: String) -> String {
         return String(format: "%\(format)f", value)
     }
     
-    func format(duration: NSTimeInterval) -> String {
+    private func formatDuration(duration: NSTimeInterval) -> String {
         let duration = Int(duration)
         let seconds = duration % 60
         let minutes = (duration / 60) % 60
@@ -63,4 +83,5 @@ public struct Progress<G: SequenceType>: SequenceType {
     public func generate() -> ProgressGenerator<G.Generator> {
         let count = generator.underestimateCount()
         return ProgressGenerator(source: generator.generate(), count: count)
+    }
 }
