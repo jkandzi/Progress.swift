@@ -48,7 +48,7 @@ To integrate Progress.swift into your Xcode project using Carthage, specify it i
 github "jkandzi/Progress.swift"
 ```
 
-Run `carthage update` to build the framework and drag the built Progress.framework into your Xcode project.
+Run `carthage update` to build the framework and drag the built `Progress.framework` into your Xcode project.
 
 ###Swift Package Manager
 
