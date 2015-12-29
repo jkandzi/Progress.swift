@@ -40,6 +40,16 @@ $ 3 of 5 [------------------            ] ETA: 00:00:02 (at 1.00 it/s)
 ```
 
 #Installation
+###Carthage
+
+To integrate Progress.swift into your Xcode project using Carthage, specify it in your Cartfile:
+
+```
+github "jkandzi/Progress.swift"
+```
+
+Run `carthage update` to build the framework and drag the built Progress.framework into your Xcode project.
+
 ###Swift Package Manager
 
 To install with the Swift Package Manager, add the following in your `Package.swift`:
