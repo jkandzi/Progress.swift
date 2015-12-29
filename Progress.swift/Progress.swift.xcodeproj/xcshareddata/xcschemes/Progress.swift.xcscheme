@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A0DF1F8D1C31C4340031EE1D"
-               BuildableName = "Progress.swift.framework"
+               BuildableName = "Progress.framework"
                BlueprintName = "Progress.swift"
                ReferencedContainer = "container:Progress.swift.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A0DF1F8D1C31C4340031EE1D"
-            BuildableName = "Progress.swift.framework"
+            BuildableName = "Progress.framework"
             BlueprintName = "Progress.swift"
             ReferencedContainer = "container:Progress.swift.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A0DF1F8D1C31C4340031EE1D"
-            BuildableName = "Progress.swift.framework"
+            BuildableName = "Progress.framework"
             BlueprintName = "Progress.swift"
             ReferencedContainer = "container:Progress.swift.xcodeproj">
          </BuildableReference>
