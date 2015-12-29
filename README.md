@@ -6,7 +6,7 @@
 
 Just wrap the `SequenceType` in your loop with the `Progress SequenceType` and you'll automatically get beautiful progress bars.
 
-# Example
+## Example
 
 ```swift
 for i in 1...9 {
@@ -43,9 +43,9 @@ $ 2 of 2 [------------------------------] ETA: 00:00:00 (at 1.00 it/s)
 $ 3 of 5 [------------------            ] ETA: 00:00:02 (at 1.00 it/s)
 ```
 
-#Installation
+## Installation
 
-###Cocoapods
+### Cocoapods
 
 Progress.swift is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -54,7 +54,7 @@ it, simply add the following line to your Podfile:
 pod "Progress.swift"
 ```
 
-###Carthage
+### Carthage
 
 To integrate Progress.swift into your Xcode project using Carthage, specify it in your Cartfile:
 
@@ -64,7 +64,7 @@ github "jkandzi/Progress.swift"
 
 Run `carthage update` to build the framework and drag the built `Progress.framework` into your Xcode project.
 
-###Swift Package Manager
+### Swift Package Manager
 
 To install with the Swift Package Manager, add the following in your `Package.swift`:
 
@@ -79,11 +79,11 @@ let package = Package(
 )
 ```
 
-###Manual
+### Manual
 
 You can also copy the `Progress.swift` file into your Xcode project.
 
-#Contribution
+## Contribution
 
 You are welcome to fork and submit pull requests.
 
