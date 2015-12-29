@@ -1,5 +1,5 @@
 # Progress.swift :hourglass:
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/jkandzi/Progress.swift/blob/master/LICENSE.txt)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) 
 [![Version](https://img.shields.io/cocoapods/v/Progress.swift.svg?style=flat)](http://cocoapods.org/pods/Progress.swift)
 [![License](https://img.shields.io/cocoapods/l/Progress.swift.svg?style=flat)](http://cocoapods.org/pods/Progress.swift)
 [![Platform](https://img.shields.io/cocoapods/p/Progress.swift.svg?style=flat)](http://cocoapods.org/pods/Progress.swift)
