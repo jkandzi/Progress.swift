@@ -35,7 +35,7 @@ public protocol ProgressElementType {
 }
 
 
-/// creates the progress bar element e.g. "[----------------------        ]"
+/// the progress bar element e.g. "[----------------------        ]"
 public struct ProgressBarLine: ProgressElementType {
     let barLength: Int
 
@@ -58,7 +58,7 @@ public struct ProgressBarLine: ProgressElementType {
 }
 
 
-/// creates the index element e.g. "2 of 3"
+/// the index element e.g. "2 of 3"
 public struct ProgressIndex: ProgressElementType {
     public func value(progressBar: ProgressBar) -> String {
         return "\(progressBar.index) of \(progressBar.count)"
@@ -66,6 +66,7 @@ public struct ProgressIndex: ProgressElementType {
 }
 
 
+/// the percentage element e.g. "90.0%"
 public struct ProgressPercent: ProgressElementType {
     public func value(progressBar: ProgressBar) -> String {
         let percentDone = Double(progressBar.index) / Double(progressBar.count) * 100
@@ -74,7 +75,7 @@ public struct ProgressPercent: ProgressElementType {
 }
 
 
-/// creates the time estimates e.g. "ETA: 00:00:02 (at 1.00 it/s)"
+/// the time estimates e.g. "ETA: 00:00:02 (at 1.00 it/s)"
 public struct ProgressTimeEstimates: ProgressElementType {
     public func value(progressBar: ProgressBar) -> String {
         let totalTime = CFAbsoluteTimeGetCurrent() - progressBar.startTime
@@ -108,7 +109,7 @@ public struct ProgressBar {
     let startTime = CFAbsoluteTimeGetCurrent()
     let count: Int
     let configuration: [ProgressElementType]?
-
+    
     static var defaultConfiguration: [ProgressElementType] = [ProgressIndex(), ProgressBarLine(), ProgressTimeEstimates()]
     
     init(count: Int, configuration: [ProgressElementType]? = nil) {
