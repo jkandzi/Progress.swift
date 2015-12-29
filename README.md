@@ -1,4 +1,8 @@
-# Progress.swift :hourglass: [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/jkandzi/Progress.swift/blob/master/LICENSE.txt)
+# Progress.swift :hourglass:
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/jkandzi/Progress.swift/blob/master/LICENSE.txt)
+[![Version](https://img.shields.io/cocoapods/v/Progress.swift.svg?style=flat)](http://cocoapods.org/pods/Progress.swift)
+[![License](https://img.shields.io/cocoapods/l/Progress.swift.svg?style=flat)](http://cocoapods.org/pods/Progress.swift)
+[![Platform](https://img.shields.io/cocoapods/p/Progress.swift.svg?style=flat)](http://cocoapods.org/pods/Progress.swift)
 
 Just wrap the `SequenceType` in your loop with the `Progress SequenceType` and you'll automatically get beautiful progress bars.
 
@@ -40,6 +44,16 @@ $ 3 of 5 [------------------            ] ETA: 00:00:02 (at 1.00 it/s)
 ```
 
 #Installation
+
+###Cocoapods
+
+Progress.swift is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "Progress.swift"
+```
+
 ###Carthage
 
 To integrate Progress.swift into your Xcode project using Carthage, specify it in your Cartfile:
@@ -73,6 +87,10 @@ You can also copy the `Progress.swift` file into your Xcode project.
 
 You are welcome to fork and submit pull requests.
 
-#License
+## Author
 
-Progress.swift is released under the MIT license. See [LICENSE](https://github.com/jkandzi/Progress.swift/blob/master/LICENSE.txt) for details.
+Justus Kandzi, justus.kandzi@gmail.com
+
+## License
+
+Progress.swift is available under the MIT license. See the [LICENSE](https://github.com/jkandzi/Progress.swift/blob/master/LICENSE.txt) file for more info.
