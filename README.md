@@ -1,4 +1,4 @@
-# Progress.swift :hourglass:
+# Progress.swift :hourglass: [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/jkandzi/Progress.swift/blob/master/LICENSE.txt)
 
 Just wrap the `SequenceType` in your loop with the `Progress SequenceType` and you'll automatically get beautiful progress bars.
 
