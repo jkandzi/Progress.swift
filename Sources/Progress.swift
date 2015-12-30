@@ -68,9 +68,15 @@ public struct ProgressIndex: ProgressElementType {
 
 /// the percentage element e.g. "90.0%"
 public struct ProgressPercent: ProgressElementType {
+    let decimalPlaces: Int
+    
+    init(decimalPlaces: Int = 0) {
+        self.decimalPlaces = decimalPlaces
+    }
+    
     public func value(progressBar: ProgressBar) -> String {
         let percentDone = Double(progressBar.index) / Double(progressBar.count) * 100
-        return String(format: "%.1f%%", percentDone)
+        return String(format: "%.\(decimalPlaces)f%%", percentDone)
     }
 }
 
@@ -98,6 +104,20 @@ public struct ProgressTimeEstimates: ProgressElementType {
         let minutes = (duration / 60) % 60
         let hours = (duration / 3600)
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+}
+
+
+/// an arbitrary string that can be added to the progress bar.
+public struct ProgressString: ProgressElementType {
+    let string: String
+    
+    init(string: String) {
+        self.string = string
+    }
+    
+    public func value(_: ProgressBar) -> String {
+        return string
     }
 }
 
