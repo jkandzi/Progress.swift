@@ -39,7 +39,7 @@ public protocol ProgressElementType {
 public struct ProgressBarLine: ProgressElementType {
     let barLength: Int
 
-    init(barLength: Int = 30) {
+    public init(barLength: Int = 30) {
         self.barLength = barLength
     }
     
@@ -70,7 +70,7 @@ public struct ProgressIndex: ProgressElementType {
 public struct ProgressPercent: ProgressElementType {
     let decimalPlaces: Int
     
-    init(decimalPlaces: Int = 0) {
+    public init(decimalPlaces: Int = 0) {
         self.decimalPlaces = decimalPlaces
     }
     
@@ -112,7 +112,7 @@ public struct ProgressTimeEstimates: ProgressElementType {
 public struct ProgressString: ProgressElementType {
     let string: String
     
-    init(string: String) {
+    public init(string: String) {
         self.string = string
     }
     
@@ -132,7 +132,7 @@ public struct ProgressBar {
     
     static var defaultConfiguration: [ProgressElementType] = [ProgressIndex(), ProgressBarLine(), ProgressTimeEstimates()]
     
-    init(count: Int, configuration: [ProgressElementType]? = nil) {
+    public init(count: Int, configuration: [ProgressElementType]? = nil) {
         self.count = count
         self.configuration = configuration
         
@@ -141,7 +141,7 @@ public struct ProgressBar {
         print("")
     }
     
-    mutating func next() {
+    public mutating func next() {
         let configuration = self.configuration ?? ProgressBar.defaultConfiguration
         let string: String = configuration.reduce("", combine: { $0 + " " + $1.value(self) })
         print("\u{1B}[1A\u{1B}[K\(string)")

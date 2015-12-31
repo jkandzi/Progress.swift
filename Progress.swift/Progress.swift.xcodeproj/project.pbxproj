@@ -7,11 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A03D0BDC1C35B20C00E74DB7 /* ProgressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03D0BDB1C35B20C00E74DB7 /* ProgressTests.swift */; };
+		A03D0BDE1C35B20C00E74DB7 /* Progress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0DF1F8E1C31C4340031EE1D /* Progress.framework */; };
 		A0DF1F921C31C4340031EE1D /* Progress.swift.h in Headers */ = {isa = PBXBuildFile; fileRef = A0DF1F911C31C4340031EE1D /* Progress.swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A0DF1F9C1C31C49A0031EE1D /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DF1F9B1C31C49A0031EE1D /* Progress.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A03D0BDF1C35B20C00E74DB7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0DF1F851C31C4340031EE1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0DF1F8D1C31C4340031EE1D;
+			remoteInfo = Progress.swift;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		A03D0BD91C35B20C00E74DB7 /* ProgressTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProgressTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A03D0BDB1C35B20C00E74DB7 /* ProgressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTests.swift; sourceTree = "<group>"; };
+		A03D0BDD1C35B20C00E74DB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0DF1F8E1C31C4340031EE1D /* Progress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Progress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0DF1F911C31C4340031EE1D /* Progress.swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Progress.swift.h; sourceTree = "<group>"; };
 		A0DF1F931C31C4340031EE1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -19,6 +34,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A03D0BD61C35B20C00E74DB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A03D0BDE1C35B20C00E74DB7 /* Progress.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A0DF1F8A1C31C4340031EE1D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -29,10 +52,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A03D0BDA1C35B20C00E74DB7 /* ProgressTests */ = {
+			isa = PBXGroup;
+			children = (
+				A03D0BDB1C35B20C00E74DB7 /* ProgressTests.swift */,
+				A03D0BDD1C35B20C00E74DB7 /* Info.plist */,
+			);
+			path = ProgressTests;
+			sourceTree = "<group>";
+		};
 		A0DF1F841C31C4340031EE1D = {
 			isa = PBXGroup;
 			children = (
 				A0DF1F901C31C4340031EE1D /* Progress.swift */,
+				A03D0BDA1C35B20C00E74DB7 /* ProgressTests */,
 				A0DF1F8F1C31C4340031EE1D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				A0DF1F8E1C31C4340031EE1D /* Progress.framework */,
+				A03D0BD91C35B20C00E74DB7 /* ProgressTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,6 +103,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		A03D0BD81C35B20C00E74DB7 /* ProgressTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A03D0BE31C35B20C00E74DB7 /* Build configuration list for PBXNativeTarget "ProgressTests" */;
+			buildPhases = (
+				A03D0BD51C35B20C00E74DB7 /* Sources */,
+				A03D0BD61C35B20C00E74DB7 /* Frameworks */,
+				A03D0BD71C35B20C00E74DB7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A03D0BE01C35B20C00E74DB7 /* PBXTargetDependency */,
+			);
+			name = ProgressTests;
+			productName = ProgressTests;
+			productReference = A03D0BD91C35B20C00E74DB7 /* ProgressTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		A0DF1F8D1C31C4340031EE1D /* Progress.swift */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A0DF1F961C31C4340031EE1D /* Build configuration list for PBXNativeTarget "Progress.swift" */;
@@ -97,6 +149,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Justus Kandzi";
 				TargetAttributes = {
+					A03D0BD81C35B20C00E74DB7 = {
+						CreatedOnToolsVersion = 7.2;
+					};
 					A0DF1F8D1C31C4340031EE1D = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -115,11 +170,19 @@
 			projectRoot = "";
 			targets = (
 				A0DF1F8D1C31C4340031EE1D /* Progress.swift */,
+				A03D0BD81C35B20C00E74DB7 /* ProgressTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A03D0BD71C35B20C00E74DB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A0DF1F8C1C31C4340031EE1D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -130,6 +193,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A03D0BD51C35B20C00E74DB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A03D0BDC1C35B20C00E74DB7 /* ProgressTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A0DF1F891C31C4340031EE1D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -140,7 +211,39 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A03D0BE01C35B20C00E74DB7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0DF1F8D1C31C4340031EE1D /* Progress.swift */;
+			targetProxy = A03D0BDF1C35B20C00E74DB7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		A03D0BE11C35B20C00E74DB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ProgressTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.justuskandzi.ProgressTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A03D0BE21C35B20C00E74DB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ProgressTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.justuskandzi.ProgressTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		A0DF1F941C31C4340031EE1D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -271,6 +374,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A03D0BE31C35B20C00E74DB7 /* Build configuration list for PBXNativeTarget "ProgressTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A03D0BE11C35B20C00E74DB7 /* Debug */,
+				A03D0BE21C35B20C00E74DB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		A0DF1F881C31C4340031EE1D /* Build configuration list for PBXProject "Progress.swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
