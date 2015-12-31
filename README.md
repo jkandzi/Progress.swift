@@ -1,5 +1,6 @@
 # Progress.swift :hourglass:
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![SPM ready](https://img.shields.io/badge/SPM-ready-orange.svg)](https://www.swift.org)
 [![Version](https://img.shields.io/cocoapods/v/Progress.swift.svg?style=flat)](http://cocoapods.org/pods/Progress.swift)
 [![License](https://img.shields.io/cocoapods/l/Progress.swift.svg?style=flat)](http://cocoapods.org/pods/Progress.swift)
 [![Platform](https://img.shields.io/cocoapods/p/Progress.swift.svg?style=flat)](http://cocoapods.org/pods/Progress.swift)
@@ -13,6 +14,8 @@ Updating the progress bar does not work in the Xcode console because it does not
 Just take a regular loop like this `for i in 1...9 { ...` and wrap the `1...9` range in the `Progress` type and you'll automatically get a nice progress bar.
 
 ```swift
+import Progress
+
 for i in Progress(1...9) {
     ...
 }
