@@ -1,4 +1,5 @@
 # Progress.swift :hourglass:
+[![Build Status](https://travis-ci.org/jkandzi/Progress.swift.svg?branch=master)](https://travis-ci.org/jkandzi/Progress.swift)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![SPM ready](https://img.shields.io/badge/SPM-ready-orange.svg)](https://www.swift.org)
 [![Version](https://img.shields.io/cocoapods/v/Progress.swift.svg?style=flat)](http://cocoapods.org/pods/Progress.swift)
