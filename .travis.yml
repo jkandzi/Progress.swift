@@ -1,0 +1,8 @@
+language: objective-c
+os: osx
+osx_image: xcode7.2
+
+xcode_project: Progress.swift/Progress.swift.xcodeproj
+xcode_scheme: Progress.swift
+
+script: xcodebuild -project Progress.swift/Progress.swift.xcodeproj -scheme 'Progress.swift' clean build GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES | xcpretty
