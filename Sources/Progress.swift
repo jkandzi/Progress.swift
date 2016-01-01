@@ -134,7 +134,13 @@ public struct ProgressBar {
     let count: Int
     let configuration: [ProgressElementType]?
     
-    static var defaultConfiguration: [ProgressElementType] = [ProgressIndex(), ProgressBarLine(), ProgressTimeEstimates()]
+    public var value: String {
+        let configuration = self.configuration ?? ProgressBar.defaultConfiguration
+        let values = configuration.map { $0.value(self) }
+        return values.joinWithSeparator(" ")
+    }
+    
+    public static var defaultConfiguration: [ProgressElementType] = [ProgressIndex(), ProgressBarLine(), ProgressTimeEstimates()]
     
     public init(count: Int, configuration: [ProgressElementType]? = nil) {
         self.count = count
@@ -146,10 +152,7 @@ public struct ProgressBar {
     }
     
     public mutating func next() {
-        let configuration = self.configuration ?? ProgressBar.defaultConfiguration
-        let string: String = configuration.reduce("", combine: { $0 + " " + $1.value(self) })
-        print("\u{1B}[1A\u{1B}[K\(string)")
-
+        print("\u{1B}[1A\u{1B}[K\(value)")
         index += 1
     }
 }

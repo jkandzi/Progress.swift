@@ -76,4 +76,18 @@ class ProgressTests: XCTestCase {
         
         XCTAssertEqual(timeEstimates.value(bar), "ETA: 00:00:00 (at 0.00) it/s)")
     }
+    
+    func testProgressDefaultConfiguration() {
+        var bar = ProgressBar(count: 2)
+        XCTAssertEqual(bar.value, "0 of 2 [                              ] ETA: 00:00:00 (at 0.00) it/s)")
+        bar.next()
+        XCTAssertTrue(bar.value.hasPrefix("1 of 2 [---------------               ] ETA: "))
+    }
+    
+    func testProgressConfiguration() {
+        var bar = ProgressBar(count: 2, configuration: [ProgressString(string: "percent done:"), ProgressPercent()])
+        bar.next()
+        
+        XCTAssertEqual(bar.value, "percent done: 50%")
+    }
 }
