@@ -60,6 +60,8 @@ public struct ProgressBarLine: ProgressElementType {
 
 /// the index element e.g. "2 of 3"
 public struct ProgressIndex: ProgressElementType {
+    public init() {}
+    
     public func value(progressBar: ProgressBar) -> String {
         return "\(progressBar.index) of \(progressBar.count)"
     }
@@ -83,6 +85,8 @@ public struct ProgressPercent: ProgressElementType {
 
 /// the time estimates e.g. "ETA: 00:00:02 (at 1.00 it/s)"
 public struct ProgressTimeEstimates: ProgressElementType {
+    public init() {}
+    
     public func value(progressBar: ProgressBar) -> String {
         let totalTime = CFAbsoluteTimeGetCurrent() - progressBar.startTime
         
