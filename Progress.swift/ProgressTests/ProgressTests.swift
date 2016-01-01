@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Progress
+@testable import Progress
 
 class ProgressTests: XCTestCase {
     
@@ -126,10 +126,17 @@ class ProgressTests: XCTestCase {
     }
     
     func testProgressGenerator() {
-        let progress = Progress(6...7)
+        let progress = Progress(6...7, configuration: [ProgressIndex()])
+        
         var generator = progress.generate()
         
+        XCTAssertEqual(generator.progressBar.value, "0 of 2")
         XCTAssertEqual(generator.next(), 6)
+        
+        XCTAssertEqual(generator.progressBar.value, "1 of 2")
+        generator.progressBar.value
+
         XCTAssertEqual(generator.next(), 7)
+        XCTAssertEqual(generator.progressBar.value, "2 of 2")
     }
 }
