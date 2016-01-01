@@ -34,7 +34,7 @@ It also works with all the other types adopting the `CollectionType` protocol li
 You can also create the progress bar manually without a sequence type:
 
 ```swift
-var bar = ProgressBar(count: 3)
+var bar = ProgressBar(count: 4)
 
 for i in 0...3 {
     bar.next()
