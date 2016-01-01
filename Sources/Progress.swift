@@ -77,7 +77,10 @@ public struct ProgressPercent: ProgressElementType {
     }
     
     public func value(progressBar: ProgressBar) -> String {
-        let percentDone = Double(progressBar.index) / Double(progressBar.count) * 100
+        var percentDone = 100.0
+        if progressBar.count > 0 {
+            percentDone = Double(progressBar.index) / Double(progressBar.count) * 100
+        }
         return String(format: "%.\(decimalPlaces)f%%", percentDone)
     }
 }
@@ -152,8 +155,10 @@ public struct ProgressBar {
     }
     
     public mutating func next() {
-        print("\u{1B}[1A\u{1B}[K\(value)")
-        index += 1
+        if index < count {
+            print("\u{1B}[1A\u{1B}[K\(value)")
+            index += 1
+        }
     }
 }
 

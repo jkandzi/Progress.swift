@@ -11,6 +11,12 @@ import Progress
 
 class ProgressTests: XCTestCase {
     
+    override func setUp() {
+        super.setUp()
+
+        ProgressBar.defaultConfiguration = [ProgressIndex(), ProgressBarLine(), ProgressTimeEstimates()]
+    }
+
     func testPercentElement() {
         var bar = ProgressBar(count: 10)
         bar.next()
@@ -26,6 +32,12 @@ class ProgressTests: XCTestCase {
         let percent = ProgressPercent(decimalPlaces: 4)
         
         XCTAssertEqual(percent.value(bar), "20.0000%")
+    }
+    
+    func testPercentElementWithProgressBarCountZero() {
+        let bar = ProgressBar(count: 0)
+        let percent = ProgressPercent()
+        XCTAssertEqual(percent.value(bar), "100%")
     }
     
     func testIndexElement() {
@@ -84,10 +96,32 @@ class ProgressTests: XCTestCase {
         XCTAssertTrue(bar.value.hasPrefix("1 of 2 [---------------               ] ETA: "))
     }
     
+    func testProgressDefaultConfigurationUpdate() {
+        ProgressBar.defaultConfiguration = [ProgressPercent()]
+        
+        let bar = ProgressBar(count: 2)
+        XCTAssertEqual(bar.value, "0%")
+    }
+
+    
     func testProgressConfiguration() {
         var bar = ProgressBar(count: 2, configuration: [ProgressString(string: "percent done:"), ProgressPercent()])
         bar.next()
         
         XCTAssertEqual(bar.value, "percent done: 50%")
+    }
+    
+    func testProgressBarCountZero() {
+        let bar = ProgressBar(count: 0)
+        
+        XCTAssertEqual(bar.value, "0 of 0 [------------------------------] ETA: 00:00:00 (at 0.00) it/s)")
+    }
+    
+    func testProgressBarOutOfBounds() {
+        var bar = ProgressBar(count: 2, configuration: [ProgressIndex()])
+        for _ in 0...10 {
+            bar.next()
+        }
+        XCTAssertEqual(bar.value, "2 of 2")
     }
 }
