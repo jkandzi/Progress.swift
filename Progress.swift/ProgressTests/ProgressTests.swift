@@ -124,4 +124,12 @@ class ProgressTests: XCTestCase {
         }
         XCTAssertEqual(bar.value, "2 of 2")
     }
+    
+    func testProgressGenerator() {
+        let progress = Progress(6...7)
+        var generator = progress.generate()
+        
+        XCTAssertEqual(generator.next(), 6)
+        XCTAssertEqual(generator.next(), 7)
+    }
 }
