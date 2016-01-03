@@ -6,7 +6,7 @@ xcode_project: Progress.swift/Progress.swift.xcodeproj
 xcode_scheme: Progress.swift
 
 script: 
-- xcodebuild -project Progress.swift/Progress.swift.xcodeproj -scheme Progress.swift -enableCodeCoverage YES clean build test | xcpretty
+- set -o pipefail && xcodebuild -project Progress.swift/Progress.swift.xcodeproj -scheme Progress.swift -enableCodeCoverage YES clean build test | xcpretty
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)
