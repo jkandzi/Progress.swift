@@ -122,7 +122,7 @@ class ProgressTests: XCTestCase {
         for _ in 0...10 {
             bar.next()
         }
-        XCTAssertEqual(bar.value, "2 of 2")
+        XCTAssertEqual(bar.index, 3)
     }
     
     func testProgressGenerator() {
@@ -138,5 +138,11 @@ class ProgressTests: XCTestCase {
 
         XCTAssertEqual(generator.next(), 7)
         XCTAssertEqual(generator.progressBar.value, "2 of 2")
+    }
+    
+    func testProgressBarPerformance() {
+        measureBlock {
+            for _ in Progress(1...100000) {}
+        }
     }
 }

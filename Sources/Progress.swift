@@ -27,8 +27,8 @@
 
 import Foundation
 
-// MARK: - ProgressElements
 
+// MARK: - ProgressElements
 
 public protocol ProgressElementType {
     func value(progressBar: ProgressBar) -> String
@@ -128,12 +128,14 @@ public struct ProgressString: ProgressElementType {
     }
 }
 
-// MARK: - ProgressBar
 
+// MARK: - ProgressBar
 
 public struct ProgressBar {
     var index = 0
     let startTime = CFAbsoluteTimeGetCurrent()
+    var lastPrintedTime: CFAbsoluteTime = 0
+    
     let count: Int
     let configuration: [ProgressElementType]?
     
@@ -155,15 +157,19 @@ public struct ProgressBar {
     }
     
     public mutating func next() {
-        if index < count {
+        guard index <= count else { return }
+        
+        let currentTime = CFAbsoluteTimeGetCurrent()
+        if (currentTime - lastPrintedTime > 0.1 || index == count) {
             print("\u{1B}[1A\u{1B}[K\(value)")
-            index += 1
+            lastPrintedTime = currentTime
         }
+        index += 1
     }
 }
 
-// MARK: - GeneratorType
 
+// MARK: - GeneratorType
 
 public struct ProgressGenerator<G: GeneratorType>: GeneratorType {
     var source: G
@@ -180,8 +186,8 @@ public struct ProgressGenerator<G: GeneratorType>: GeneratorType {
     }
 }
 
-// MARK: - SequenceType
 
+// MARK: - SequenceType
 
 public struct Progress<G: SequenceType>: SequenceType {
     let generator: G
