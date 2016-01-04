@@ -45,9 +45,7 @@ extension Double {
             .split() { $0 == "." }
             .map { String($0) }
         
-        guard var integerPart = components.first else {
-            return stringWithZeros(minimumIntegerPartLength)
-        }
+        var integerPart = components.first ?? "0"
         
         let missingLeadingZeros = minimumIntegerPartLength - integerPart.characters.count
         if missingLeadingZeros > 0 {
