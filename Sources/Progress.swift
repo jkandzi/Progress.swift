@@ -25,15 +25,44 @@
 //  SOFTWARE.
 //
 
+
+// MARK: - ProgressBarDisplayer
+
+public protocol ProgressBarDisplayer {
+    mutating func display(progressBar: ProgressBar)
+}
+
+struct ProgressBarPrinter: ProgressBarDisplayer {
+    var lastPrintedTime = 0.0
+
+    init() {
+        // the cursor is moved up before printing the progress bar.
+        // have to move the cursor down one line initially.
+        print("")
+    }
+    
+    mutating func display(progressBar: ProgressBar) {
+        let currentTime = getTimeOfDay()
+        if (currentTime - lastPrintedTime > 0.1 || progressBar.index == progressBar.count) {
+            print("\u{1B}[1A\u{1B}[K\(progressBar.value)")
+            lastPrintedTime = currentTime
+        }
+    }
+}
+
+
 // MARK: - ProgressBar
 
 public struct ProgressBar {
     var index = 0
     let startTime = getTimeOfDay()
-    var lastPrintedTime = 0.0
     
     let count: Int
     let configuration: [ProgressElementType]?
+
+    public static var defaultConfiguration: [ProgressElementType] = [ProgressIndex(), ProgressBarLine(), ProgressTimeEstimates()]
+
+    var progressBarDisplayer: ProgressBarDisplayer
     
     public var value: String {
         let configuration = self.configuration ?? ProgressBar.defaultConfiguration
@@ -41,25 +70,15 @@ public struct ProgressBar {
         return values.joinWithSeparator(" ")
     }
     
-    public static var defaultConfiguration: [ProgressElementType] = [ProgressIndex(), ProgressBarLine(), ProgressTimeEstimates()]
-    
-    public init(count: Int, configuration: [ProgressElementType]? = nil) {
+    public init(count: Int, configuration: [ProgressElementType]? = nil, progressBarDisplayer: ProgressBarDisplayer = ProgressBarPrinter()) {
         self.count = count
         self.configuration = configuration
-        
-        // the cursor is moved up before printing the progress bar.
-        // have to move the cursor down one line initially.
-        print("")
+        self.progressBarDisplayer = progressBarDisplayer
     }
     
     public mutating func next() {
         guard index <= count else { return }
-        
-        let currentTime = getTimeOfDay()
-        if (currentTime - lastPrintedTime > 0.1 || index == count) {
-            print("\u{1B}[1A\u{1B}[K\(value)")
-            lastPrintedTime = currentTime
-        }
+        progressBarDisplayer.display(self)
         index += 1
     }
 }
