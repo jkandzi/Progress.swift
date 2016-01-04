@@ -51,7 +51,7 @@ extension Double {
         
         let missingLeadingZeros = minimumIntegerPartLength - integerPart.characters.count
         if missingLeadingZeros > 0 {
-            integerPart += stringWithZeros(missingLeadingZeros)
+            integerPart = stringWithZeros(missingLeadingZeros) + integerPart
         }
         
         if decimalPartLength == 0 {
