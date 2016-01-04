@@ -28,11 +28,11 @@
 
 // MARK: - ProgressBarDisplayer
 
-public protocol ProgressBarDisplayer {
+public protocol ProgressBarPrinter {
     mutating func display(progressBar: ProgressBar)
 }
 
-struct ProgressBarPrinter: ProgressBarDisplayer {
+struct ProgressBarTerminalPrinter: ProgressBarPrinter {
     var lastPrintedTime = 0.0
 
     init() {
@@ -62,7 +62,7 @@ public struct ProgressBar {
 
     public static var defaultConfiguration: [ProgressElementType] = [ProgressIndex(), ProgressBarLine(), ProgressTimeEstimates()]
 
-    var progressBarDisplayer: ProgressBarDisplayer
+    var printer: ProgressBarPrinter
     
     public var value: String {
         let configuration = self.configuration ?? ProgressBar.defaultConfiguration
@@ -70,15 +70,15 @@ public struct ProgressBar {
         return values.joinWithSeparator(" ")
     }
     
-    public init(count: Int, configuration: [ProgressElementType]? = nil, progressBarDisplayer: ProgressBarDisplayer = ProgressBarPrinter()) {
+    public init(count: Int, configuration: [ProgressElementType]? = nil, printer: ProgressBarPrinter? = nil) {
         self.count = count
         self.configuration = configuration
-        self.progressBarDisplayer = progressBarDisplayer
+        self.printer = printer ?? ProgressBarTerminalPrinter()
     }
     
     public mutating func next() {
         guard index <= count else { return }
-        progressBarDisplayer.display(self)
+        printer.display(self)
         index += 1
     }
 }
@@ -90,9 +90,9 @@ public struct ProgressGenerator<G: GeneratorType>: GeneratorType {
     var source: G
     var progressBar: ProgressBar
     
-    init(source: G, count: Int, configuration: [ProgressElementType]? = nil) {
+    init(source: G, count: Int, configuration: [ProgressElementType]? = nil, printer: ProgressBarPrinter? = nil) {
         self.source = source
-        self.progressBar = ProgressBar(count: count, configuration: configuration)
+        self.progressBar = ProgressBar(count: count, configuration: configuration, printer: printer)
     }
     
     public mutating func next() -> G.Element? {
@@ -107,14 +107,16 @@ public struct ProgressGenerator<G: GeneratorType>: GeneratorType {
 public struct Progress<G: SequenceType>: SequenceType {
     let generator: G
     let configuration: [ProgressElementType]?
+    let printer: ProgressBarPrinter?
     
-    public init(_ generator: G, configuration: [ProgressElementType]? = nil) {
+    public init(_ generator: G, configuration: [ProgressElementType]? = nil, printer: ProgressBarPrinter? = nil) {
         self.generator = generator
         self.configuration = configuration
+        self.printer = printer
     }
     
     public func generate() -> ProgressGenerator<G.Generator> {
         let count = generator.underestimateCount()
-        return ProgressGenerator(source: generator.generate(), count: count, configuration: configuration)
+        return ProgressGenerator(source: generator.generate(), count: count, configuration: configuration, printer: printer)
     }
 }

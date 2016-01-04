@@ -11,6 +11,7 @@
 		A03D0BDE1C35B20C00E74DB7 /* Progress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0DF1F8E1C31C4340031EE1D /* Progress.framework */; };
 		A0ADAE841C3A52BA00E52781 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ADAE831C3A52BA00E52781 /* Utilities.swift */; };
 		A0ADAE861C3A56E700E52781 /* ProgressElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ADAE851C3A56E700E52781 /* ProgressElements.swift */; };
+		A0ADAE881C3A59D300E52781 /* ProgressElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ADAE871C3A59D300E52781 /* ProgressElementsTests.swift */; };
 		A0DF1F921C31C4340031EE1D /* Progress.swift.h in Headers */ = {isa = PBXBuildFile; fileRef = A0DF1F911C31C4340031EE1D /* Progress.swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A0DF1F9C1C31C49A0031EE1D /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DF1F9B1C31C49A0031EE1D /* Progress.swift */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 		A03D0BDD1C35B20C00E74DB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0ADAE831C3A52BA00E52781 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		A0ADAE851C3A56E700E52781 /* ProgressElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressElements.swift; sourceTree = "<group>"; };
+		A0ADAE871C3A59D300E52781 /* ProgressElementsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressElementsTests.swift; sourceTree = "<group>"; };
 		A0DF1F8E1C31C4340031EE1D /* Progress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Progress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0DF1F911C31C4340031EE1D /* Progress.swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Progress.swift.h; sourceTree = "<group>"; };
 		A0DF1F931C31C4340031EE1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				A03D0BDB1C35B20C00E74DB7 /* ProgressTests.swift */,
+				A0ADAE871C3A59D300E52781 /* ProgressElementsTests.swift */,
 				A03D0BDD1C35B20C00E74DB7 /* Info.plist */,
 			);
 			path = ProgressTests;
@@ -204,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A03D0BDC1C35B20C00E74DB7 /* ProgressTests.swift in Sources */,
+				A0ADAE881C3A59D300E52781 /* ProgressElementsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
