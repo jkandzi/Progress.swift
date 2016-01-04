@@ -93,7 +93,7 @@ public struct ProgressTimeEstimates: ProgressElementType {
         var itemsPerSecond = 0.0
         var estimatedTimeRemaining = 0.0
         if progressBar.index > 0 {
-            itemsPerSecond = totalTime / Double(progressBar.index)
+            itemsPerSecond = Double(progressBar.index) / totalTime
             estimatedTimeRemaining = itemsPerSecond * Double(progressBar.count - progressBar.index)
         }
         
