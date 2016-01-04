@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A03D0BDC1C35B20C00E74DB7 /* ProgressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03D0BDB1C35B20C00E74DB7 /* ProgressTests.swift */; };
 		A03D0BDE1C35B20C00E74DB7 /* Progress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0DF1F8E1C31C4340031EE1D /* Progress.framework */; };
+		A0ADAE841C3A52BA00E52781 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0ADAE831C3A52BA00E52781 /* Utilities.swift */; };
 		A0DF1F921C31C4340031EE1D /* Progress.swift.h in Headers */ = {isa = PBXBuildFile; fileRef = A0DF1F911C31C4340031EE1D /* Progress.swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A0DF1F9C1C31C49A0031EE1D /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DF1F9B1C31C49A0031EE1D /* Progress.swift */; };
 /* End PBXBuildFile section */
@@ -27,6 +28,7 @@
 		A03D0BD91C35B20C00E74DB7 /* ProgressTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProgressTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A03D0BDB1C35B20C00E74DB7 /* ProgressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTests.swift; sourceTree = "<group>"; };
 		A03D0BDD1C35B20C00E74DB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0ADAE831C3A52BA00E52781 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		A0DF1F8E1C31C4340031EE1D /* Progress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Progress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0DF1F911C31C4340031EE1D /* Progress.swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Progress.swift.h; sourceTree = "<group>"; };
 		A0DF1F931C31C4340031EE1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			children = (
 				A0DF1F911C31C4340031EE1D /* Progress.swift.h */,
 				A0DF1F9B1C31C49A0031EE1D /* Progress.swift */,
+				A0ADAE831C3A52BA00E52781 /* Utilities.swift */,
 				A0DF1F931C31C4340031EE1D /* Info.plist */,
 			);
 			path = Progress.swift;
@@ -206,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0DF1F9C1C31C49A0031EE1D /* Progress.swift in Sources */,
+				A0ADAE841C3A52BA00E52781 /* Utilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +385,7 @@
 				A03D0BE21C35B20C00E74DB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A0DF1F881C31C4340031EE1D /* Build configuration list for PBXProject "Progress.swift" */ = {
 			isa = XCConfigurationList;

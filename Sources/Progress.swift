@@ -25,8 +25,6 @@
 //  SOFTWARE.
 //
 
-import Foundation
-
 
 // MARK: - ProgressElements
 
@@ -81,7 +79,7 @@ public struct ProgressPercent: ProgressElementType {
         if progressBar.count > 0 {
             percentDone = Double(progressBar.index) / Double(progressBar.count) * 100
         }
-        return String(format: "%.\(decimalPlaces)f%%", percentDone)
+        return "\(percentDone.format(decimalPlaces))%"
     }
 }
 
@@ -91,7 +89,7 @@ public struct ProgressTimeEstimates: ProgressElementType {
     public init() {}
     
     public func value(progressBar: ProgressBar) -> String {
-        let totalTime = CFAbsoluteTimeGetCurrent() - progressBar.startTime
+        let totalTime = getTimeOfDay() - progressBar.startTime
         
         var itemsPerSecond = 0.0
         var estimatedTimeRemaining = 0.0
@@ -102,15 +100,15 @@ public struct ProgressTimeEstimates: ProgressElementType {
         
         let estimatedTimeRemainingString = formatDuration(estimatedTimeRemaining)
         
-        return String(format: "ETA: %@ (at %.2f) it/s)", estimatedTimeRemainingString, itemsPerSecond)
+        return "ETA: \(estimatedTimeRemainingString) (at \(itemsPerSecond.format(2))) it/s)"
     }
 
-    private func formatDuration(duration: NSTimeInterval) -> String {
+    private func formatDuration(duration: Double) -> String {
         let duration = Int(duration)
-        let seconds = duration % 60
-        let minutes = (duration / 60) % 60
-        let hours = (duration / 3600)
-        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+        let seconds = Double(duration % 60)
+        let minutes = Double((duration / 60) % 60)
+        let hours = Double(duration / 3600)
+        return "\(hours.format(0, minimumIntegerPartLength: 2)):\(minutes.format(0, minimumIntegerPartLength: 2)):\(seconds.format(0, minimumIntegerPartLength: 2))"
     }
 }
 
@@ -133,8 +131,8 @@ public struct ProgressString: ProgressElementType {
 
 public struct ProgressBar {
     var index = 0
-    let startTime = CFAbsoluteTimeGetCurrent()
-    var lastPrintedTime: CFAbsoluteTime = 0
+    let startTime = getTimeOfDay()
+    var lastPrintedTime = 0.0
     
     let count: Int
     let configuration: [ProgressElementType]?
@@ -159,7 +157,7 @@ public struct ProgressBar {
     public mutating func next() {
         guard index <= count else { return }
         
-        let currentTime = CFAbsoluteTimeGetCurrent()
+        let currentTime = getTimeOfDay()
         if (currentTime - lastPrintedTime > 0.1 || index == count) {
             print("\u{1B}[1A\u{1B}[K\(value)")
             lastPrintedTime = currentTime
