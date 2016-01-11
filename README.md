@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/cocoapods/l/Progress.swift.svg?style=flat)](http://cocoapods.org/pods/Progress.swift)
 [![Platform](https://img.shields.io/cocoapods/p/Progress.swift.svg?style=flat)](http://cocoapods.org/pods/Progress.swift)
 
-![demo gif](https://github.com/jkandzi/Progress.swift/blob/master/demo.gig)
+![demo gif](https://github.com/jkandzi/Progress.swift/blob/master/demo.gif)
 
 Just wrap the `SequenceType` in your loop with the `Progress SequenceType` and you'll automatically get beautiful progress bars.
 
