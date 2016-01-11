@@ -7,6 +7,8 @@
 [![License](https://img.shields.io/cocoapods/l/Progress.swift.svg?style=flat)](http://cocoapods.org/pods/Progress.swift)
 [![Platform](https://img.shields.io/cocoapods/p/Progress.swift.svg?style=flat)](http://cocoapods.org/pods/Progress.swift)
 
+![demo gif](https://github.com/jkandzi/Progress.swift/blob/master/demo.gig)
+
 Just wrap the `SequenceType` in your loop with the `Progress SequenceType` and you'll automatically get beautiful progress bars.
 
 Updating the progress bar does not work in the Xcode console because it does not support the cursor movements. If you want it to look nice run it in a real terminal.
