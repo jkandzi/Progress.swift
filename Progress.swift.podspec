@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Progress.swift'
-  s.version = '0.1.5'
+  s.version = '0.1.6'
   s.license = 'MIT'
   s.summary = 'Instantly add beautiful progress bars to your Swift loops.'
   s.description = <<-DESC
