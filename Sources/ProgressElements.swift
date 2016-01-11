@@ -94,7 +94,7 @@ public struct ProgressTimeEstimates: ProgressElementType {
         var estimatedTimeRemaining = 0.0
         if progressBar.index > 0 {
             itemsPerSecond = Double(progressBar.index) / totalTime
-            estimatedTimeRemaining = itemsPerSecond * Double(progressBar.count - progressBar.index)
+            estimatedTimeRemaining = Double(progressBar.count - progressBar.index) / itemsPerSecond
         }
         
         let estimatedTimeRemainingString = formatDuration(estimatedTimeRemaining)
