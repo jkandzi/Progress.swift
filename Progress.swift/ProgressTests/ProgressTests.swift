@@ -89,6 +89,23 @@ class ProgressTests: XCTestCase {
         
         XCTAssertEqual(testPrinter.lastValue, "2 of 2")
     }
+
+    func testProgressBarCustomIndex() {
+        let testPrinter = ProgressBarTestPrinter()
+
+        var bar = ProgressBar(count: 100, configuration: [ProgressIndex()], printer: testPrinter)
+        for _ in 0...10 {
+            bar.next()
+        }
+
+        bar.setValue(30)
+
+        XCTAssertEqual(testPrinter.lastValue, "30 of 100")
+
+        bar.setValue(1)
+
+        XCTAssertEqual(testPrinter.lastValue, "1 of 100")
+    }
     
     func testProgressGenerator() {
         let testPrinter = ProgressBarTestPrinter()
