@@ -83,7 +83,7 @@ public struct ProgressBar {
     }
 
     public mutating func setValue(index: Int) {
-        guard index <= count else { return }
+        guard index <= count && index >= 0 else { return }
         self.index = index
         printer.display(self)
     }

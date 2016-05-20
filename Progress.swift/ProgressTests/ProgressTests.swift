@@ -105,6 +105,22 @@ class ProgressTests: XCTestCase {
         bar.setValue(1)
 
         XCTAssertEqual(testPrinter.lastValue, "1 of 100")
+
+        bar.setValue(-5)
+
+        XCTAssertEqual(testPrinter.lastValue, "1 of 100")
+
+        bar.setValue(100)
+
+        XCTAssertEqual(testPrinter.lastValue, "100 of 100")
+
+        bar.setValue(10000)
+
+        XCTAssertEqual(testPrinter.lastValue, "100 of 100")
+
+        bar.setValue(0)
+
+        XCTAssertEqual(testPrinter.lastValue, "0 of 100")
     }
     
     func testProgressGenerator() {
