@@ -77,7 +77,7 @@ extension String {
         else if end < 0 || end > self.characters.count {
             end = self.characters.count
         }
-        let range = Range(start: self.startIndex.advancedBy(start), end: self.startIndex.advancedBy(end))
+        let range = self.startIndex.advancedBy(start) ..< self.startIndex.advancedBy(end)        
         return self[range]
     }
 }
