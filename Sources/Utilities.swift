@@ -39,7 +39,7 @@ func getTimeOfDay() -> Double {
 }
 
 extension Double {
-    func format(decimalPartLength: Int, minimumIntegerPartLength: Int = 0) -> String {
+    func format(_ decimalPartLength: Int, minimumIntegerPartLength: Int = 0) -> String {
         let value = String(self)
         let components = value.characters
             .split() { $0 == "." }
@@ -63,13 +63,13 @@ extension Double {
         return "\(integerPart).\(decimalPlaces)"
     }
     
-    private func stringWithZeros(count: Int) -> String {
-        return Array(count: count, repeatedValue: "0").joinWithSeparator("")
+    fileprivate func stringWithZeros(_ count: Int) -> String {
+        return Array(repeating: "0", count: count).joined(separator: "")
     }
 }
 
 extension String {
-    func substringWithRange(start: Int, end: Int) -> String {
+    func substringWithRange(_ start: Int, end: Int) -> String {
         var end = end
         if start < 0 || start > self.characters.count {
             return ""
@@ -77,7 +77,7 @@ extension String {
         else if end < 0 || end > self.characters.count {
             end = self.characters.count
         }
-        let range = self.startIndex.advancedBy(start) ..< self.startIndex.advancedBy(end)        
+        let range = self.characters.index(self.startIndex, offsetBy: start) ..< self.characters.index(self.startIndex, offsetBy: end)        
         return self[range]
     }
 }
