@@ -29,7 +29,7 @@
 // MARK: - ProgressBarDisplayer
 
 public protocol ProgressBarPrinter {
-    mutating func display(progressBar: ProgressBar)
+    mutating func display(_ progressBar: ProgressBar)
 }
 
 struct ProgressBarTerminalPrinter: ProgressBarPrinter {
@@ -41,7 +41,7 @@ struct ProgressBarTerminalPrinter: ProgressBarPrinter {
         print("")
     }
     
-    mutating func display(progressBar: ProgressBar) {
+    mutating func display(_ progressBar: ProgressBar) {
         let currentTime = getTimeOfDay()
         if (currentTime - lastPrintedTime > 0.1 || progressBar.index == progressBar.count) {
             print("\u{1B}[1A\u{1B}[K\(progressBar.value)")
@@ -67,7 +67,7 @@ public struct ProgressBar {
     public var value: String {
         let configuration = self.configuration ?? ProgressBar.defaultConfiguration
         let values = configuration.map { $0.value(self) }
-        return values.joinWithSeparator(" ")
+        return values.joined(separator: " ")
     }
     
     public init(count: Int, configuration: [ProgressElementType]? = nil, printer: ProgressBarPrinter? = nil) {
@@ -82,7 +82,7 @@ public struct ProgressBar {
         index += 1
     }
 
-    public mutating func setValue(index: Int) {
+    public mutating func setValue(_ index: Int) {
         guard index <= count && index >= 0 else { return }
         self.index = index
         printer.display(self)
@@ -93,7 +93,7 @@ public struct ProgressBar {
 
 // MARK: - GeneratorType
 
-public struct ProgressGenerator<G: GeneratorType>: GeneratorType {
+public struct ProgressGenerator<G: IteratorProtocol>: IteratorProtocol {
     var source: G
     var progressBar: ProgressBar
     
@@ -111,7 +111,7 @@ public struct ProgressGenerator<G: GeneratorType>: GeneratorType {
 
 // MARK: - SequenceType
 
-public struct Progress<G: SequenceType>: SequenceType {
+public struct Progress<G: Sequence>: Sequence {
     let generator: G
     let configuration: [ProgressElementType]?
     let printer: ProgressBarPrinter?
@@ -122,8 +122,8 @@ public struct Progress<G: SequenceType>: SequenceType {
         self.printer = printer
     }
     
-    public func generate() -> ProgressGenerator<G.Generator> {
-        let count = generator.underestimateCount()
-        return ProgressGenerator(source: generator.generate(), count: count, configuration: configuration, printer: printer)
+    public func makeIterator() -> ProgressGenerator<G.Iterator> {
+        let count = generator.underestimatedCount
+        return ProgressGenerator(source: generator.makeIterator(), count: count, configuration: configuration, printer: printer)
     }
 }

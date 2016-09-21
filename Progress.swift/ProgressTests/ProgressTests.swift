@@ -32,7 +32,7 @@ import Progress
 class ProgressBarTestPrinter: ProgressBarPrinter {
     var lastValue: String = ""
     
-    func display(progressBar: ProgressBar) {
+    func display(_ progressBar: ProgressBar) {
         lastValue = progressBar.value
     }
 }
@@ -127,7 +127,7 @@ class ProgressTests: XCTestCase {
         let testPrinter = ProgressBarTestPrinter()
         let progress = Progress(6...7, configuration: [ProgressIndex()], printer: testPrinter)
         
-        var generator = progress.generate()
+        var generator = progress.makeIterator()
         
         XCTAssertEqual(generator.next(), 6)
         XCTAssertEqual(testPrinter.lastValue, "0 of 2")
@@ -138,7 +138,7 @@ class ProgressTests: XCTestCase {
     }
     
     func testProgressBarPerformance() {
-        measureBlock {
+        measure {
             for _ in Progress(1...100000) {}
         }
     }

@@ -28,7 +28,7 @@
 
 
 public protocol ProgressElementType {
-    func value(progressBar: ProgressBar) -> String
+    func value(_ progressBar: ProgressBar) -> String
 }
 
 
@@ -40,7 +40,7 @@ public struct ProgressBarLine: ProgressElementType {
         self.barLength = barLength
     }
     
-    public func value(progressBar: ProgressBar) -> String {
+    public func value(_ progressBar: ProgressBar) -> String {
         var completedBarElements = 0
         if progressBar.count == 0 {
             completedBarElements = barLength
@@ -48,9 +48,9 @@ public struct ProgressBarLine: ProgressElementType {
             completedBarElements = Int(Double(barLength) * (Double(progressBar.index) / Double(progressBar.count)))
         }
         
-        var barArray = [String](count: completedBarElements, repeatedValue: "-")
-        barArray += [String](count: barLength - completedBarElements, repeatedValue: " ")
-        return "[" + barArray.joinWithSeparator("") + "]"
+        var barArray = [String](repeating: "-", count: completedBarElements)
+        barArray += [String](repeating: " ", count: barLength - completedBarElements)
+        return "[" + barArray.joined(separator: "") + "]"
     }
 }
 
@@ -59,7 +59,7 @@ public struct ProgressBarLine: ProgressElementType {
 public struct ProgressIndex: ProgressElementType {
     public init() {}
     
-    public func value(progressBar: ProgressBar) -> String {
+    public func value(_ progressBar: ProgressBar) -> String {
         return "\(progressBar.index) of \(progressBar.count)"
     }
 }
@@ -73,7 +73,7 @@ public struct ProgressPercent: ProgressElementType {
         self.decimalPlaces = decimalPlaces
     }
     
-    public func value(progressBar: ProgressBar) -> String {
+    public func value(_ progressBar: ProgressBar) -> String {
         var percentDone = 100.0
         if progressBar.count > 0 {
             percentDone = Double(progressBar.index) / Double(progressBar.count) * 100
@@ -87,7 +87,7 @@ public struct ProgressPercent: ProgressElementType {
 public struct ProgressTimeEstimates: ProgressElementType {
     public init() {}
     
-    public func value(progressBar: ProgressBar) -> String {
+    public func value(_ progressBar: ProgressBar) -> String {
         let totalTime = getTimeOfDay() - progressBar.startTime
         
         var itemsPerSecond = 0.0
@@ -102,7 +102,7 @@ public struct ProgressTimeEstimates: ProgressElementType {
         return "ETA: \(estimatedTimeRemainingString) (at \(itemsPerSecond.format(2))) it/s)"
     }
     
-    private func formatDuration(duration: Double) -> String {
+    fileprivate func formatDuration(_ duration: Double) -> String {
         let duration = Int(duration)
         let seconds = Double(duration % 60)
         let minutes = Double((duration / 60) % 60)
