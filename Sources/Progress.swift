@@ -54,10 +54,10 @@ struct ProgressBarTerminalPrinter: ProgressBarPrinter {
 // MARK: - ProgressBar
 
 public struct ProgressBar {
-    var index = 0
-    let startTime = getTimeOfDay()
+    private(set) public var index = 0
+    public let startTime = getTimeOfDay()
     
-    let count: Int
+    public let count: Int
     let configuration: [ProgressElementType]?
 
     public static var defaultConfiguration: [ProgressElementType] = [ProgressIndex(), ProgressBarLine(), ProgressTimeEstimates()]
