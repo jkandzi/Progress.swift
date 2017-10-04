@@ -78,6 +78,6 @@ extension String {
             end = self.characters.count
         }
         let range = self.characters.index(self.startIndex, offsetBy: start) ..< self.characters.index(self.startIndex, offsetBy: end)        
-        return self[range]
+        return String(self[range])
     }
 }
