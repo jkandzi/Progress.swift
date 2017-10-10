@@ -41,13 +41,13 @@ func getTimeOfDay() -> Double {
 extension Double {
     func format(_ decimalPartLength: Int, minimumIntegerPartLength: Int = 0) -> String {
         let value = String(self)
-        let components = value.characters
+        let components = value
             .split() { $0 == "." }
             .map { String($0) }
         
         var integerPart = components.first ?? "0"
         
-        let missingLeadingZeros = minimumIntegerPartLength - integerPart.characters.count
+        let missingLeadingZeros = minimumIntegerPartLength - integerPart.count
         if missingLeadingZeros > 0 {
             integerPart = stringWithZeros(missingLeadingZeros) + integerPart
         }
@@ -57,7 +57,7 @@ extension Double {
         }
         
         var decimalPlaces = components.last?.substringWithRange(0, end: decimalPartLength) ?? "0"
-        let missingPlaceCount = decimalPartLength - decimalPlaces.characters.count
+        let missingPlaceCount = decimalPartLength - decimalPlaces.count
         decimalPlaces += stringWithZeros(missingPlaceCount)
         
         return "\(integerPart).\(decimalPlaces)"
@@ -71,13 +71,13 @@ extension Double {
 extension String {
     func substringWithRange(_ start: Int, end: Int) -> String {
         var end = end
-        if start < 0 || start > self.characters.count {
+        if start < 0 || start > self.count {
             return ""
         }
-        else if end < 0 || end > self.characters.count {
-            end = self.characters.count
+        else if end < 0 || end > self.count {
+            end = self.count
         }
-        let range = self.characters.index(self.startIndex, offsetBy: start) ..< self.characters.index(self.startIndex, offsetBy: end)        
+        let range = self.index(self.startIndex, offsetBy: start) ..< self.index(self.startIndex, offsetBy: end)
         return String(self[range])
     }
 }
