@@ -28,14 +28,36 @@
 
 #if os(Linux)
     import Glibc
+#elseif os(Windows)
+    import WinSDK
 #else
     import Darwin.C
 #endif
 
 func getTimeOfDay() -> Double {
-    var tv = timeval()
-    gettimeofday(&tv, nil)
-    return Double(tv.tv_sec) + Double(tv.tv_usec) / 1000000
+    #if os(Windows)
+        var st = SYSTEMTIME()
+        GetLocalTime(&st)
+        var h = Int(st.wHour)
+        var m = Int(st.wMinute)
+        var s = Int(st.wSecond)
+        var ms = Int(st.wMilliseconds)
+       
+        h *= 3600
+        m *= 60
+       
+        s *= 1000
+        m *= 1000
+        h *= 1000
+        
+        let timeMs = h + m + s + ms
+        
+        return Double(timeMs) / 1000
+    #else
+        var tv = timeval()
+        gettimeofday(&tv, nil)
+        return Double(tv.tv_sec) + Double(tv.tv_usec) / 1000000
+    #endif
 }
 
 extension Double {
