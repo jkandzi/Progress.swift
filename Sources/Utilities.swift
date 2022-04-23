@@ -31,7 +31,7 @@
 #elseif os(Windows)
     import WinSDK
 #else
-    import Darwin.C
+    import Darwin
 #endif
 
 func getTimeOfDay() -> Double {
@@ -39,9 +39,9 @@ func getTimeOfDay() -> Double {
         let ticks = GetTickCount64()
         return Double(ticks) / 1000
     #else
-        var tv = timeval()
-        gettimeofday(&tv, nil)
-        return Double(tv.tv_sec) + Double(tv.tv_usec) / 1000000
+        var ts = timespec()
+        clock_gettime(CLOCK_MONOTONIC, &ts)
+        return Double(ts.tv_sec) + Double(ts.tv_nsec) * 1E-9
     #endif
 }
 
