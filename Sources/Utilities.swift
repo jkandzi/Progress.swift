@@ -50,9 +50,9 @@ func getTimeOfDay() -> Double {
         m *= 1000
         h *= 1000
         
-        let timeMs = h + m + s + ms
+        ms = ms + s + m + h
         
-        return Double(timeMs) / 1000
+        return Double(ms) / 1000
     #else
         var tv = timeval()
         gettimeofday(&tv, nil)
