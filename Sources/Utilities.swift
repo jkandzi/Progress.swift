@@ -36,23 +36,8 @@
 
 func getTimeOfDay() -> Double {
     #if os(Windows)
-        var st = SYSTEMTIME()
-        GetLocalTime(&st)
-        var h = Int(st.wHour)
-        var m = Int(st.wMinute)
-        var s = Int(st.wSecond)
-        var ms = Int(st.wMilliseconds)
-       
-        h *= 3600
-        m *= 60
-       
-        s *= 1000
-        m *= 1000
-        h *= 1000
-        
-        ms = ms + s + m + h
-        
-        return Double(ms) / 1000
+        let ticks = GetTickCount64()
+        return Double(ticks) / 1000
     #else
         var tv = timeval()
         gettimeofday(&tv, nil)
