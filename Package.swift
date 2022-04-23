@@ -4,9 +4,6 @@ import PackageDescription
 
 let package = Package(
     name: "Progress",
-    platforms: [
-        .macOS(.v10_12)
-    ],
     products: [
         .library(name: "Progress", targets: ["Progress"]),
     ],
