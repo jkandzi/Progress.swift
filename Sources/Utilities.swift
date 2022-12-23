@@ -28,14 +28,21 @@
 
 #if os(Linux)
     import Glibc
+#elseif os(Windows)
+    import WinSDK
 #else
     import Darwin.C
 #endif
 
 func getTimeOfDay() -> Double {
-    var tv = timeval()
-    gettimeofday(&tv, nil)
-    return Double(tv.tv_sec) + Double(tv.tv_usec) / 1000000
+    #if os(Windows)
+        let ticks = GetTickCount64()
+        return Double(ticks) / 1000
+    #else
+        var tv = timeval()
+        gettimeofday(&tv, nil)
+        return Double(tv.tv_sec) + Double(tv.tv_usec) / 1000000
+    #endif
 }
 
 extension Double {
