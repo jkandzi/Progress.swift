@@ -1,4 +1,4 @@
-// swift-tools-version:4.0
+// swift-tools-version:5.7
 
 import PackageDescription
 
@@ -8,6 +8,7 @@ let package = Package(
         .library(name: "Progress", targets: ["Progress"]),
     ],
     targets: [
-        .target(name: "Progress", dependencies: [], path: "Sources"),
+        .target(name: "Progress", dependencies: []),
+        .testTarget(name: "ProgressTests", dependencies: ["Progress"])
     ]
 )

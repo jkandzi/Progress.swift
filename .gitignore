@@ -53,3 +53,4 @@ Carthage/Build
 fastlane/report.xml
 fastlane/screenshots
 
+/.swiftpm
