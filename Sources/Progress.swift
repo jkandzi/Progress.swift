@@ -43,7 +43,7 @@ struct ProgressBarTerminalPrinter: ProgressBarPrinter {
     
     mutating func display(_ progressBar: ProgressBar) {
         let currentTime = getTimeOfDay()
-        if (currentTime - lastPrintedTime > 0.1 || progressBar.index == progressBar.count) {
+        if (currentTime - lastPrintedTime > 0.1 || progressBar.element == progressBar.count) {
             print("\u{1B}[1A\u{1B}[K\(progressBar.value)")
             lastPrintedTime = currentTime
         }
@@ -54,7 +54,7 @@ struct ProgressBarTerminalPrinter: ProgressBarPrinter {
 // MARK: - ProgressBar
 
 public struct ProgressBar {
-    private(set) public var index = 0
+    private(set) public var element = 1
     public let startTime = getTimeOfDay()
     
     public let count: Int
@@ -77,15 +77,15 @@ public struct ProgressBar {
     }
     
     public mutating func next() {
-        guard index <= count else { return }
+        guard element <= count else { return }
         let anotherSelf = self
         printer.display(anotherSelf)
-        index += 1
+        element += 1
     }
 
     public mutating func setValue(_ index: Int) {
         guard index <= count && index >= 0 else { return }
-        self.index = index
+        self.element = index
         let anotherSelf = self
         printer.display(anotherSelf)
     }

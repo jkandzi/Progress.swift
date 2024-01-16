@@ -45,7 +45,7 @@ public struct ProgressBarLine: ProgressElementType {
         if progressBar.count == 0 {
             completedBarElements = barLength
         } else {
-            completedBarElements = Int(Double(barLength) * (Double(progressBar.index) / Double(progressBar.count)))
+            completedBarElements = Int(Double(barLength) * (Double(progressBar.element) / Double(progressBar.count)))
         }
         
         var barArray = [String](repeating: "-", count: completedBarElements)
@@ -60,7 +60,7 @@ public struct ProgressIndex: ProgressElementType {
     public init() {}
     
     public func value(_ progressBar: ProgressBar) -> String {
-        return "\(progressBar.index) of \(progressBar.count)"
+        return "\(progressBar.element) of \(progressBar.count)"
     }
 }
 
@@ -76,7 +76,7 @@ public struct ProgressPercent: ProgressElementType {
     public func value(_ progressBar: ProgressBar) -> String {
         var percentDone = 100.0
         if progressBar.count > 0 {
-            percentDone = Double(progressBar.index) / Double(progressBar.count) * 100
+            percentDone = Double(progressBar.element) / Double(progressBar.count) * 100
         }
         return "\(percentDone.format(decimalPlaces))%"
     }
@@ -92,9 +92,9 @@ public struct ProgressTimeEstimates: ProgressElementType {
         
         var itemsPerSecond = 0.0
         var estimatedTimeRemaining = 0.0
-        if progressBar.index > 0 {
-            itemsPerSecond = Double(progressBar.index) / totalTime
-            estimatedTimeRemaining = Double(progressBar.count - progressBar.index) / itemsPerSecond
+        if progressBar.element > 0 {
+            itemsPerSecond = Double(progressBar.element) / totalTime
+            estimatedTimeRemaining = Double(progressBar.count - progressBar.element) / itemsPerSecond
         }
         
         let estimatedTimeRemainingString = formatDuration(estimatedTimeRemaining)
